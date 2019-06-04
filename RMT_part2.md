@@ -1,4 +1,4 @@
-R Mini Tutorial: R Environment, reading/writting, and basic executions
+R Mini Tutorial Part 2: R Environment, reading/writting, and basic executions
 ================
 luiscartor
 May 29, 2019
@@ -15,9 +15,9 @@ In R, we talk about the **workspace** as your current R working environment and 
 By setting the working directory of R, we can directly use relative path to read/write data within this folder.
 
 For example: an absolute path looks like this:
-`D:/SRE2019/Rtutorial/part2/exercise1/occurrence.csv`
+`D:/SRE2019/Rtutorial/part2/exercise1/herons.csv`
 if we set the working directory as `D:/SRE2019/Rtutorial/part2`, then the relative path will be:
-`exercise1/occurrence.csv`
+`exercise1/herons.csv`
 
 ``` r
 setwd("D:/SRE2019/Rtutorial/part2") # note: the folder should exist, before you set it up.
@@ -361,7 +361,7 @@ Several *if statements* can be chained together using `if else`:
 
 > ### Excercise
 >
-> Create an script that calculates the square root of a given object x, only if x is equal or bigger than zero. If x is negative, print a message indicating that this operation is not allowed.
+> Create a script that calculates the square root of a given object x, only if x is equal or bigger than zero. If x is negative, print a message indicating that this operation is not allowed.
 
 <br>
 
@@ -446,6 +446,7 @@ R can be easily used to calculate summary statistics, such as mean, sd, range, p
 
 ``` r
 normvec <- rnorm(100); normvec                             # a vector with random normal numbers
+
 vec_mean <- mean(normvec); vec_mean                        # mean 
 vec_sd <- sd(normvec); vec_sd                              # standard deviation
 vec_med <- median(normvec); vec_med                        # median
@@ -461,8 +462,8 @@ normvec <- rnorm(100)
 summary(normvec)
 ```
 
-    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-    ## -2.32802 -0.67109  0.02215  0.05658  0.73735  2.69359
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    ## -3.2802 -0.7700 -0.1317 -0.0849  0.5363  2.6637
 
 ### 2.4.2 Linear regression
 
@@ -616,15 +617,84 @@ Let's visually improve this graph:
 ``` r
 plot(col_pop, col_size, 
      main = "Example of scatter plot", xlab = "Colony population", ylab = "Colony size",
-     las=1, pch = 19) 
+     las=1, pch = 18, cex.axis=1.2, cex.lab=1.2, col="orange") 
 ```
 
 ![](RMT_part2_files/figure-markdown_github/unnamed-chunk-33-1.png)
 
-...
+You can have a look at different plotting parameters [here](https://www.statmethods.net/advgraphs/parameters.html):
 
-Let's save the graph...
+<br>
+
+Now we can plot the results of a linear regression model, together with the scatter plot.
+
+``` r
+lmodel <- lm(col_size ~ col_pop)   # The model is created and stored in lmodel
+summary(lmodel)                    # Model results 
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = col_size ~ col_pop)
+    ## 
+    ## Residuals:
+    ##       1       2       3       4       5       6       7 
+    ##  0.5086 -4.2983  1.2142  0.5336  5.7351 -5.2733  1.5801 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)  1.74408    3.77083   0.463    0.663    
+    ## col_pop      0.58403    0.04466  13.076 4.67e-05 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 4.091 on 5 degrees of freedom
+    ## Multiple R-squared:  0.9716, Adjusted R-squared:  0.9659 
+    ## F-statistic:   171 on 1 and 5 DF,  p-value: 4.668e-05
+
+``` r
+plot(col_pop, col_size, 
+     main = "Example of scatter plot", xlab = "Colony population", ylab = "Colony size",
+     las=1, pch = 18, cex.axis=1.2, cex.lab=1.2, col="orange") 
+
+abline(lmodel)           # abline() adds a straight line to the current plot
+```
+
+![](RMT_part2_files/figure-markdown_github/unnamed-chunk-35-1.png)
+
+`abline()` extracts the coefficients from the linear model to plot a straight line.
+
+Another useful model visualization process is to plot the residuals of the linear model:
+
+``` r
+plot(col_pop, lmodel$residuals, xlab="Colony population", ylab="Residuals")  # Plot residuals against colony population
+abline(0,0)           # Horizon
+```
+
+![](RMT_part2_files/figure-markdown_github/unnamed-chunk-36-1.png)
+
+One last important step is to learn how to save plots using the console. There exist several approaches, but one of the simplest ones is to use the family of functions `dev.copy()`:
+
+``` r
+plot(col_pop, col_size, 
+     main = "Example of scatter plot", xlab = "Colony population", ylab = "Colony size",
+     las=1, pch = 18, cex.axis=1.2, cex.lab=1.2, col="orange") 
+
+abline(lmodel)           # abline() adds a straight line to the current plot
+
+dev.copy(png,'scatterplot.png')            # Creates plot png file
+dev.off()                                  # Saves plot and closes plotting device
+```
 
 ### Other plots
 
-In the next part of the tutorial, we will explore R capabilities for ploting maps and spatial data.
+There are many other types of plots that are easy to represent in R, such as pie charts, barplots, density graphs, network plots. Another strong advantage of using R is its capabilities for the representation of maps. In the next part of the tutorial, we will explore R capabilities for ploting maps and other spatial data.
+
+<br>
+
+> ### Excercises
+>
+> 1.  Type `iris` in your R console and explore the `iris` dataset (built-in in R). Explore the descriptives (mean, sd, quartiles) of each species. Hint: to subset the rows of the to a certain species, use: iris\[iris$species=="name.of.species",\].
+> 2.  Using the `iris` dataset, create a boxplot with the sepal length for each species.
+> 3.  Using the `iris` dataset, creata a linear regression model for the variation of sepal length against the variation of sepal witdth. Create a scatter plot with those values and plot the regression line.
+> 4.  AT HOME: explore the library `ggplot2` for graphics.
