@@ -1,7 +1,11 @@
-R Mini Tutorial: Getting started and data types
+R Mini Tutorial Part 1: Getting started and data types
 ================
 luiscartor
 May 29, 2019
+
+#### Go to [part 2](https://luiscartor.github.io/RMT_part2) of the tutorial.
+
+#### Go to [part 3](https://luiscartor.github.io/RMT_part3) of the tutorial.
 
 1. Getting started
 ------------------
@@ -156,27 +160,9 @@ C
 >
 > 1.  
 >     1 + 0.3 + 0.7<sup>2</sup>
-<<<<<<< HEAD
 > 2.  For a = 0.5 and b = 1:
 >     *s**i**n*(*a*)*c**o**s*(*b*)−*c**o**s*(*a*)
 > 3.  
-=======
-<<<<<<< HEAD
->      &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-> 2.  For a = 0.5 and b = 1: 
->     *s**i**n*(*a*)*c**o**s*(*b*)−*c**o**s*(*a*)
->     ===========================================
->
-> 3.  For a = 0.5 and b = 1:
->     $$\\frac{sin(a)cos(b)}{cos(a)}$$
->      &gt;&gt;&gt;&gt;&gt;&gt; 7ee0d78e0545a65101691046db9156a8f4cf96ac
-> 4.  
-=======
-> 2.  For a = 0.5 and b = 1:
->     *s**i**n*(*a*)*c**o**s*(*b*)−*c**o**s*(*a*)
-> 3.  
->>>>>>> 71ba72a3ddbdca1342d4a3ca81e9f0a690378873
->>>>>>> 25774a4b398458984a2042ad37f3ec89908c1986
 >     *e*<sup>0.5<sup>2</sup>/4</sup>
 > 4.  For a = 10 and b = 2:
 >     log(*a*)−3 \* log 10(*b*)
@@ -509,3 +495,7 @@ factor(v1)
 >
 > 1.  Try to access only the string "three" from the list L created previously.
 > 2.  Check the class type of each element of list L.
+
+<br>
+
+#### Go to [next section](https://luiscartor.github.io/RMT_part2).

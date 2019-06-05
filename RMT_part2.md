@@ -3,6 +3,10 @@ R Mini Tutorial Part 2: R Environment, reading/writting, and basic executions
 luiscartor
 May 29, 2019
 
+#### Go to [part 1](https://luiscartor.github.io/RMT_part1) of the tutorial.
+
+#### Go to [part 3](https://luiscartor.github.io/RMT_part3) of the tutorial.
+
 2.1 The R environment
 ---------------------
 
@@ -69,6 +73,8 @@ library("rgeos")
 library("rgdal")
 library("sp")
 library("ENMeval")
+library("utils")
+library("jsonlite")
 ```
 
 Note that we used an `if` statement in the last piece of code. This is telling R to install the packages, only if they hadn't been installed before. We will study the "if" statement in a few minutes.
@@ -463,7 +469,7 @@ summary(normvec)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## -3.2802 -0.7700 -0.1317 -0.0849  0.5363  2.6637
+    ## -2.1321 -0.5393  0.2153  0.2002  0.7173  2.4387
 
 ### 2.4.2 Linear regression
 
@@ -694,7 +700,11 @@ There are many other types of plots that are easy to represent in R, such as pie
 
 > ### Excercises
 >
-> 1.  Type `iris` in your R console and explore the `iris` dataset (built-in in R). Explore the descriptives (mean, sd, quartiles) of each species. Hint: to subset the rows of the to a certain species, use: iris\[iris$species=="name.of.species",\].
-> 2.  Using the `iris` dataset, create a boxplot with the sepal length for each species.
-> 3.  Using the `iris` dataset, creata a linear regression model for the variation of sepal length against the variation of sepal witdth. Create a scatter plot with those values and plot the regression line.
-> 4.  AT HOME: explore the library `ggplot2` for graphics.
+> 1.  Type `iris` in your R console and explore the `iris` dataset (built-in in R). Explore the descriptives (mean, sd, quartiles) of the sepal lenghts for each species. Hint: to subset the rows of the to a certain species, use: iris\[iris$species=="name.of.species",\].
+> 2.  Using the `iris` dataset, create a boxplot with the sepal length for each species. Save the plot to disk.
+> 3.  Using the `iris` dataset, creata a linear regression model for the variation of sepal length against the variation of sepal witdth. Create a scatter plot with those values and plot the regression line. Save the plot to disk.
+> 4.  AT HOME: explore the library `ggplot2` for graphic creation in R.
+
+<br>
+
+#### Go to the [next section](https://luiscartor.github.io/RMT_part3).
