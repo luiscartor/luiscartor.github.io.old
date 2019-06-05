@@ -1,4 +1,4 @@
-## R Mini Tutorial for SRE 2019
+## R Mini Tutorial for NIMBioS' SRE 2019
 
 Go the first part of the R Mini Tutorial [here](https://luiscartor.github.io/RMT_part1).
 
