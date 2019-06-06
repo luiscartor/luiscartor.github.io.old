@@ -4,7 +4,15 @@ luiscartor
 June 3, 2019
 
 
+R Home Page: [http://www.r-project.org](http://www.r-project.org)
 
+R packages: [http://cran.r-project.org](http://cran.r-project.org)
+
+General searches about R (instead of Google): [http://www.rseek.org/](http://www.rseek.org/)
+
+Statistics in R discussion forum: [http://www.stat.math.ethz.ch/mailman/listinfo/r-help](http://www.stat.math.ethz.ch/mailman/listinfo/r-help) 
+
+<br>
 
 **Spatial R**
 
