@@ -7,6 +7,8 @@ May 29, 2019
 
 #### Go to [part 3](https://luiscartor.github.io/RMT_part3) of the tutorial.
 
+<br>
+
 1. Getting started
 ------------------
 
@@ -266,7 +268,7 @@ Another useful function to create vectors is `rep` (`b <- rep(values,length)`):
 
 ### 1.2.2 Matrices
 
-Now we are going to take a look how to create and handle matrices in R. All columns in a matrix must have the same data mode (numeric, character, logical, etc.) and the same length. A matrix is created using the following syntax: `m <- matrix(vector, nrow=r, ncol=c, byrow=FALSE, dimnames=list(rnames, cnames))`. See the example:
+Now we are going to take a look on how to create and handle matrices in R. All columns in a matrix must have the same data mode (numeric, character, logical, etc.) and the same length. A matrix is created using the following syntax: `m <- matrix(vector, nrow=r, ncol=c, byrow=FALSE, dimnames=list(rnames, cnames))`. See the example:
 
 ``` r
   m <- matrix(1:20, nrow=5, ncol=4)
@@ -498,4 +500,4 @@ factor(v1)
 
 <br>
 
-#### Go to [next section](https://luiscartor.github.io/RMT_part2).
+#### Go to the [next section](https://luiscartor.github.io/RMT_part2).

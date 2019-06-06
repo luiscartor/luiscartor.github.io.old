@@ -7,6 +7,8 @@ May 29, 2019
 
 #### Go to [part 3](https://luiscartor.github.io/RMT_part3) of the tutorial.
 
+<br>
+
 2.1 The R environment
 ---------------------
 
@@ -58,8 +60,6 @@ For the next lesson on spatial analysis, we will need a bunch of packages. We ca
 ``` r
 packages_needed <- c("dismo", # a collection of ENM/SDM tools
                      "rgeos","rgdal","sp", # spatial data analysis
-                     "ENMeval", # a few new tools in ENM/SDM
-                     "wallace",   # interface for Maxent and ENMeval
                      "utils", # for zip & unzip files
                      "jsonlite" # necessary for download data from GBIF
                      )
@@ -72,7 +72,6 @@ library("dismo")
 library("rgeos")
 library("rgdal")
 library("sp")
-library("ENMeval")
 library("utils")
 library("jsonlite")
 ```
@@ -235,7 +234,7 @@ herons[1,]
 
 ### 2.2.2 Writing files
 
-Before learning how to write a file, let's edit the previous talbe. Let's add an extra row:
+Before learning how to write a file, let's edit the previous table. Let's add an extra row:
 
 ``` r
 herons_edit <- rbind(herons, c("alba", 5, 12))
@@ -274,11 +273,11 @@ new_table
 2.3 Basic executions
 --------------------
 
-Beyond basic arithmetic operations, we will built programmes where a piece of code will need to be executed several times, we will need to iterate across some sequence, or we will need to evaluate whether or not a piece of code needs to be run. In this section, we study how to do this.
+Beyond basic arithmetic operations, we will built programs where a piece of code will need to be executed several times, we will need to iterate across some sequence, or we will need to evaluate whether or not a piece of code needs to be run. In this section, we study how to do this.
 
 ### 2.3.1 Conditional execution
 
-To program pieces of code where we evaluate one or more conditions along some statements to be run, we use decision making statements. If a condition is determined to be true, some statements will be executed.
+In order to program pieces of code where we evaluate one or more conditions along some statements to be run, we use decision making statements. If a condition is determined to be true, some statements will be executed.
 
 ![](assets/img/ifcond.jpeg)
 
@@ -313,7 +312,7 @@ x
 
     ## [1] 2
 
-There exist other decision making statements. An if statement can be followed by an optional else statement, which executes when the conditional expression is false.
+There exist other decision making statements. An if statement can be followed by an optional else statement, which executes some code when the conditional expression is false.
 
 ``` r
  x = 2
@@ -375,7 +374,7 @@ Several *if statements* can be chained together using `if else`:
 
 Often we need to execute some code a fixed number of times, or we want the code to be repeatedly executed until some condition is met. R provides different loop structures that allow us for simple or more complex execution paths. The general structure of a loop is the following:
 
-![](assets/img/ifcond.jpeg)
+![](assets/img/loop.png)
 
 The most common is the `for` loop. It is used to repeat some statements, and it is used when you know in advance the values of the loop variable will have for every iteration of the loop:
 
@@ -392,7 +391,7 @@ for (i in vec) {               # i is the loop variable
     ## [1] 7
     ## [1] 9
 
-A `while` loop executes a statement again and again while a given contition is true:
+A `while` loop executes a statement again and again while a given condition is true:
 
 ``` r
 stringvec <- c("herons","are cool")     # a string vector is created
@@ -444,7 +443,7 @@ Did you notice the difference between the `while` and the `repeat` loops? The `r
 2.4 Statistical models
 ----------------------
 
-Most basic statiscital analysis can be performed by using the built-in R functions. Most of these functions take a vector as an argument, together with some parameters to give the result. Let's check some of the most important ones.
+Most basic statistical analysis can be performed by using the built-in R functions. Most of these functions take a vector as an argument, together with some parameters, to give the result. Let's check some of the most important ones.
 
 ### 2.4.1 Descriptives
 
@@ -469,7 +468,7 @@ summary(normvec)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## -2.1321 -0.5393  0.2153  0.2002  0.7173  2.4387
+    ## -2.3871 -0.4519  0.1165  0.1220  0.7746  2.8589
 
 ### 2.4.2 Linear regression
 
@@ -477,7 +476,7 @@ We will take a look now at a simple statistical analysis, the linear least squar
 
 Once we have gathered a sample of observed values, we can create a relationship model using the `lm()` function in R. We will be able to explore the coefficients created by the model and get a summary of the model to know the error in predictions (residuals). We can use the created model to predict new values of the response variable.
 
-Let's take the example of the heron colonies. The population size of a heron colony will be the explanatory variable, and the size (diameter of the colony) will be the response variables. we expect a linear relationship between the population and the size.
+Let's take the example of the heron colonies. The population size of a heron colony will be the explanatory variable, and the size (diameter of the colony) will be the response variables. We expect a linear relationship between the population and the size.
 
 ``` r
 col_pop <- c(116,78,60,80)         # Population data
@@ -561,7 +560,7 @@ The model predicts a colony diameter of 56.78 for a population of 95 herons.
 2.5 Plotting in R
 -----------------
 
-R is known for its strong graphic capabilities. The simplizity of graphs and maps creation is one of the reasons people love R. Here we will take a look at simple graphs that can be created with the R built-in capabilities. However, there exist a great number of external packages oriented to create beautiful graphs and maps (such as `ggplot2`).
+R is known for its strong graphic capabilities. The simplicity of graphs and maps creation is one of the reasons why people love R. Here we will take a look at simple graphs that can be created with the R built-in capabilities. However, there exist a great number of external packages oriented to create beautiful graphs and maps (such as `ggplot2`).
 
 ### 2.5.1 Boxplots
 
@@ -628,7 +627,7 @@ plot(col_pop, col_size,
 
 ![](RMT_part2_files/figure-markdown_github/unnamed-chunk-33-1.png)
 
-You can have a look at different plotting parameters [here](https://www.statmethods.net/advgraphs/parameters.html):
+You can have a look at different plotting parameters [here](https://www.statmethods.net/advgraphs/parameters.html).
 
 <br>
 
@@ -694,13 +693,13 @@ dev.off()                                  # Saves plot and closes plotting devi
 
 ### Other plots
 
-There are many other types of plots that are easy to represent in R, such as pie charts, barplots, density graphs, network plots. Another strong advantage of using R is its capabilities for the representation of maps. In the next part of the tutorial, we will explore R capabilities for ploting maps and other spatial data.
+There are many other types of plots that are easy to represent in R, such as pie charts, barplots, density graphs, network plots, etc. Another strong advantage of using R is its capabilities for the representation of maps. In the next part of the tutorial, we will explore R capabilities for plotting maps and other spatial data.
 
 <br>
 
 > ### Excercises
 >
-> 1.  Type `iris` in your R console and explore the `iris` dataset (built-in in R). Explore the descriptives (mean, sd, quartiles) of the sepal lenghts for each species. Hint: to subset the rows of the to a certain species, use: iris\[iris$species=="name.of.species",\].
+> 1.  Type `iris` in your R console and explore the `iris` dataset (built-in in R). Explore the descriptives (mean, sd, quartiles) of the sepal lenghts for each species. Hint: to subset the rows of the to a certain species, use: iris\[iris$Species=="name.of.species",\].
 > 2.  Using the `iris` dataset, create a boxplot with the sepal length for each species. Save the plot to disk.
 > 3.  Using the `iris` dataset, creata a linear regression model for the variation of sepal length against the variation of sepal witdth. Create a scatter plot with those values and plot the regression line. Save the plot to disk.
 > 4.  AT HOME: explore the library `ggplot2` for graphic creation in R.

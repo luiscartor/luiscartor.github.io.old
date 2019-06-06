@@ -7,6 +7,8 @@ May 29, 2019
 
 #### Go to [part 2](https://luiscartor.github.io/RMT_part2) of the tutorial.
 
+<br>
+
 3.1 Raster data
 ---------------
 
@@ -69,7 +71,7 @@ first_raster
     ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
     ## source     : memory
     ## names      : layer 
-    ## values     : 0.005392327, 0.9964926  (min, max)
+    ## values     : 0.03829368, 0.9905562  (min, max)
 
 ### 3.1.3 Download, read, and write raster files
 
@@ -85,7 +87,7 @@ if( !file.exists( paste0("spatialdata/bioclim/bio_10m_bil.zip")   )){
 }
 ```
 
-Now our downloaded data is in our spatialdata folder. We can start reading the data, and write it again to convert it in different file types:
+Now our downloaded data is in our *spatialdata* folder. We can start reading the data, and write it again to convert it to different file types:
 
 ``` r
 bioclim1 <- raster("spatialdata/bioclim/bio1.bil")          # Reads raster
@@ -347,7 +349,7 @@ The `pairs()` function from the `raster` package pairs plots of layers and calcu
 3.2 Vector data
 ---------------
 
-In order to deal with vectorial spatial data in R, we need to be familiar with the `sp` package. `sp` provides a set of data types, or *classes* to represent spatial data. The `sp` package does not provide with many functions to analyze spatial data. However, many other important packages use the `sp` classes.
+In order to deal with vectorial spatial data in R, we need to be familiar with the `sp` package. `sp` provides a set of data types, or *classes* to represent spatial data. The `sp` package does not provide many functions to analyze spatial data. However, many other important packages use the `sp` classes.
 
 We saw that there are three main types of vector data: points, lines, and polygons. For these, the `sp` package defines the classes: `SpatialPoints`, `SpatialLines`, `SpatialPolygons`. We are going to study how to work with these data types.
 
@@ -358,25 +360,8 @@ library("sp")
 library("raster")
 library("dismo")
 library("rgeos")
-```
-
-    ## rgeos version: 0.3-28, (SVN revision 572)
-    ##  GEOS runtime version: 3.6.2-CAPI-1.10.2 4d2925d6 
-    ##  Linking to sp version: 1.3-1 
-    ##  Polygon checking: TRUE
-
-``` r
 library("rgdal")
 ```
-
-    ## rgdal: version: 1.3-6, (SVN revision 773)
-    ##  Geospatial Data Abstraction Library extensions to R successfully loaded
-    ##  Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
-    ##  Path to GDAL shared files: /usr/share/gdal/2.2
-    ##  GDAL binary built with GEOS: TRUE 
-    ##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
-    ##  Path to PROJ.4 shared files: (autodetected)
-    ##  Linking to sp version: 1.3-1
 
 ### 3.2.1 Points
 
@@ -441,7 +426,7 @@ pts
     ## extent      : -120.8, -110.7, 35.7, 45.3  (xmin, xmax, ymin, ymax)
     ## crs         : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0
 
-What we will do now is important. We have created a SpatialPoints object. But each point of the object does not have any information associated. To be able add information to the object and be able to do calculations with it we need to create a `SpatialPointsDataFrame` object.
+What we will do next is important. We have created a SpatialPoints object. But each point of the object does not have any information associated. To be able to add information to the object and to be able to do calculations with it we need to create a `SpatialPointsDataFrame` object.
 
 To do that, we first create a `data.frame` with the same number of rows as the previous coordinates:
 
@@ -452,17 +437,17 @@ df <- data.frame(ID=1:nrow(lonlat), precip=precipvalue)
 df
 ```
 
-    ##    ID   precip
-    ## 1   1 15.36412
-    ## 2   2 89.61038
-    ## 3   3 30.93876
-    ## 4   4 36.28296
-    ## 5   5 84.96825
-    ## 6   6 55.82812
-    ## 7   7  3.74960
-    ## 8   8 71.34960
-    ## 9   9 98.19691
-    ## 10 10 66.41714
+    ##    ID    precip
+    ## 1   1 24.560280
+    ## 2   2 37.362397
+    ## 3   3 65.337683
+    ## 4   4 64.871412
+    ## 5   5  6.037816
+    ## 6   6 39.604437
+    ## 7   7 97.482510
+    ## 8   8 51.678298
+    ## 9   9 88.128526
+    ## 10 10 37.860181
 
 And now we add the precipitation values to the spatial points we created before:
 
@@ -477,8 +462,8 @@ ptsdf
     ## crs         : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
     ## variables   : 2
     ## names       : ID,           precip 
-    ## min values  :  1, 3.74959954060614 
-    ## max values  : 10, 98.1969117419794
+    ## min values  :  1, 6.03781626559794 
+    ## max values  : 10, 97.4825097247958
 
 See what is inside this `SpatialPointsDataFrame`:
 
@@ -488,17 +473,17 @@ showDefault(ptsdf)
 
     ## An object of class "SpatialPointsDataFrame"
     ## Slot "data":
-    ##    ID   precip
-    ## 1   1 15.36412
-    ## 2   2 89.61038
-    ## 3   3 30.93876
-    ## 4   4 36.28296
-    ## 5   5 84.96825
-    ## 6   6 55.82812
-    ## 7   7  3.74960
-    ## 8   8 71.34960
-    ## 9   9 98.19691
-    ## 10 10 66.41714
+    ##    ID    precip
+    ## 1   1 24.560280
+    ## 2   2 37.362397
+    ## 3   3 65.337683
+    ## 4   4 64.871412
+    ## 5   5  6.037816
+    ## 6   6 39.604437
+    ## 7   7 97.482510
+    ## 8   8 51.678298
+    ## 9   9 88.128526
+    ## 10 10 37.860181
     ## 
     ## Slot "coords.nrs":
     ## numeric(0)
@@ -705,9 +690,9 @@ d
 ```
 
     ##   attr1 attr2 newatt
-    ## 1     1     7      s
-    ## 2     2     6      h
-    ## 3     3     5      r
+    ## 1     1     7      x
+    ## 2     2     6      d
+    ## 3     3     5      c
 
 Let's plot only one of the polygons:
 
@@ -718,10 +703,14 @@ plot(threepolsdf[2,], border='blue', col='orange', lwd=3, add=TRUE)
 
 ![](RMT_part3_files/figure-markdown_github/unnamed-chunk-29-1.png)
 
+<br>
+
 > ### Excercise
 >
 > 1.  Use three-polygons object that we just created and add a new attribute called `heron_pop` and give it some values.
 > 2.  Create a new spatial point object with points that fall inside our three polygons. Then plot the polygons and the new created points together.
+
+<br>
 
 3.3 Spatial analysis
 --------------------
@@ -747,328 +736,16 @@ condor
 
 We set `download=TRUE` to download the data to our spatialdata folder:
 
-    ##   acceptedNameUsage               acceptedScientificName acceptedTaxonKey
-    ## 1              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ## 2              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ## 3              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ## 4              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ## 5              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ## 6              <NA> Gymnogyps californianus (Shaw, 1797)          2481920
-    ##   accessRights    adm1 adm2 associatedReferences associatedSequences
-    ## 1         <NA> Arizona <NA>                 <NA>                <NA>
-    ## 2         <NA> Arizona <NA>                 <NA>                <NA>
-    ## 3         <NA> Arizona <NA>                 <NA>                <NA>
-    ## 4         <NA> Arizona <NA>                 <NA>                <NA>
-    ## 5         <NA> Arizona <NA>                 <NA>                <NA>
-    ## 6         <NA> Arizona <NA>                 <NA>                <NA>
-    ##       basisOfRecord behavior bibliographicCitation catalogNumber class
-    ## 1 HUMAN_OBSERVATION     <NA>                  <NA>      21714010  Aves
-    ## 2 HUMAN_OBSERVATION     <NA>                  <NA>      21715997  Aves
-    ## 3 HUMAN_OBSERVATION     <NA>                  <NA>      21714012  Aves
-    ## 4 HUMAN_OBSERVATION     <NA>                  <NA>      21715995  Aves
-    ## 5 HUMAN_OBSERVATION     <NA>                  <NA>      21714014  Aves
-    ## 6 HUMAN_OBSERVATION     <NA>                  <NA>      21715998  Aves
-    ##   classKey                   cloc collectionCode collectionID continent
-    ## 1      212 Arizona, United States   Observations         <NA>      <NA>
-    ## 2      212 Arizona, United States   Observations         <NA>      <NA>
-    ## 3      212 Arizona, United States   Observations         <NA>      <NA>
-    ## 4      212 Arizona, United States   Observations         <NA>      <NA>
-    ## 5      212 Arizona, United States   Observations         <NA>      <NA>
-    ## 6      212 Arizona, United States   Observations         <NA>      <NA>
-    ##   coordinatePrecision coordinateUncertaintyInMeters       country crawlId
-    ## 1                  NA                         28476 United States     165
-    ## 2                  NA                         28476 United States     165
-    ## 3                  NA                         28476 United States     165
-    ## 4                  NA                         28476 United States     165
-    ## 5                  NA                         28476 United States     165
-    ## 6                  NA                         28476 United States     165
-    ##   dataGeneralizations datasetID                           datasetKey
-    ## 1                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ## 2                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ## 3                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ## 4                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ## 5                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ## 6                <NA>      <NA> 50c9509d-22c7-4a22-a47d-8c48425ef4a7
-    ##                               datasetName      dateIdentified day depth
-    ## 1 iNaturalist research-grade observations 2019-03-28T21:57:26   9    NA
-    ## 2 iNaturalist research-grade observations 2019-03-28T22:55:57   9    NA
-    ## 3 iNaturalist research-grade observations 2019-03-28T21:57:26   9    NA
-    ## 4 iNaturalist research-grade observations 2019-03-28T22:55:57   8    NA
-    ## 5 iNaturalist research-grade observations 2019-03-28T21:57:28   9    NA
-    ## 6 iNaturalist research-grade observations 2019-03-28T22:56:00   9    NA
-    ##   depthAccuracy disposition dynamicProperties earliestAgeOrLowestStage
-    ## 1            NA        <NA>              <NA>                     <NA>
-    ## 2            NA        <NA>              <NA>                     <NA>
-    ## 3            NA        <NA>              <NA>                     <NA>
-    ## 4            NA        <NA>              <NA>                     <NA>
-    ## 5            NA        <NA>              <NA>                     <NA>
-    ## 6            NA        <NA>              <NA>                     <NA>
-    ##   earliestEonOrLowestEonothem earliestEpochOrLowestSeries
-    ## 1                        <NA>                        <NA>
-    ## 2                        <NA>                        <NA>
-    ## 3                        <NA>                        <NA>
-    ## 4                        <NA>                        <NA>
-    ## 5                        <NA>                        <NA>
-    ## 6                        <NA>                        <NA>
-    ##   earliestEraOrLowestErathem earliestPeriodOrLowestSystem elevation
-    ## 1                       <NA>                         <NA>        NA
-    ## 2                       <NA>                         <NA>        NA
-    ## 3                       <NA>                         <NA>        NA
-    ## 4                       <NA>                         <NA>        NA
-    ## 5                       <NA>                         <NA>        NA
-    ## 6                       <NA>                         <NA>        NA
-    ##   elevationAccuracy endDayOfYear establishmentMeans           eventDate
-    ## 1                NA         <NA>               <NA> 2019-01-09T09:58:00
-    ## 2                NA         <NA>               <NA> 2019-01-09T09:48:00
-    ## 3                NA         <NA>               <NA> 2019-01-09T10:24:00
-    ## 4                NA         <NA>               <NA> 2019-01-08T16:57:00
-    ## 5                NA         <NA>               <NA> 2019-01-09T10:26:00
-    ## 6                NA         <NA>               <NA> 2019-01-09T10:54:00
-    ##   eventID eventRemarks eventTime      family familyKey fieldNotes
-    ## 1    <NA>         <NA> 16:58:00Z Cathartidae   3242141       <NA>
-    ## 2    <NA>         <NA> 16:48:00Z Cathartidae   3242141       <NA>
-    ## 3    <NA>         <NA> 17:24:00Z Cathartidae   3242141       <NA>
-    ## 4    <NA>         <NA> 23:57:00Z Cathartidae   3242141       <NA>
-    ## 5    <NA>         <NA> 17:26:00Z Cathartidae   3242141       <NA>
-    ## 6    <NA>         <NA> 17:54:00Z Cathartidae   3242141       <NA>
-    ##   fieldNumber              fullCountry     gbifID genericName     genus
-    ## 1        <NA> United States of America 2242751602   Gymnogyps Gymnogyps
-    ## 2        <NA> United States of America 2234814461   Gymnogyps Gymnogyps
-    ## 3        <NA> United States of America 2235479941   Gymnogyps Gymnogyps
-    ## 4        <NA> United States of America 2234814107   Gymnogyps Gymnogyps
-    ## 5        <NA> United States of America 2235479827   Gymnogyps Gymnogyps
-    ## 6        <NA> United States of America 2234815324   Gymnogyps Gymnogyps
-    ##   genusKey geodeticDatum geologicalContextID georeferencedBy
-    ## 1  2481919         WGS84                <NA>            <NA>
-    ## 2  2481919         WGS84                <NA>            <NA>
-    ## 3  2481919         WGS84                <NA>            <NA>
-    ## 4  2481919         WGS84                <NA>            <NA>
-    ## 5  2481919         WGS84                <NA>            <NA>
-    ## 6  2481919         WGS84                <NA>            <NA>
-    ##   georeferencedDate georeferenceProtocol georeferenceRemarks
-    ## 1              <NA>                 <NA>                <NA>
-    ## 2              <NA>                 <NA>                <NA>
-    ## 3              <NA>                 <NA>                <NA>
-    ## 4              <NA>                 <NA>                <NA>
-    ## 5              <NA>                 <NA>                <NA>
-    ## 6              <NA>                 <NA>                <NA>
-    ##   georeferenceSources georeferenceVerificationStatus habitat
-    ## 1                <NA>                           <NA>    <NA>
-    ## 2                <NA>                           <NA>    <NA>
-    ## 3                <NA>                           <NA>    <NA>
-    ## 4                <NA>                           <NA>    <NA>
-    ## 5                <NA>                           <NA>    <NA>
-    ## 6                <NA>                           <NA>    <NA>
-    ##   higherClassification higherGeography highestBiostratigraphicZone
-    ## 1                 <NA>            <NA>                        <NA>
-    ## 2                 <NA>            <NA>                        <NA>
-    ## 3                 <NA>            <NA>                        <NA>
-    ## 4                 <NA>            <NA>                        <NA>
-    ## 5                 <NA>            <NA>                        <NA>
-    ## 6                 <NA>            <NA>                        <NA>
-    ##                http://unknown.org/occurrenceDetails
-    ## 1 https://www.inaturalist.org/observations/21714010
-    ## 2 https://www.inaturalist.org/observations/21715997
-    ## 3 https://www.inaturalist.org/observations/21714012
-    ## 4 https://www.inaturalist.org/observations/21715995
-    ## 5 https://www.inaturalist.org/observations/21714014
-    ## 6 https://www.inaturalist.org/observations/21715998
-    ##   http://unknown.org/recordedByOrcid identificationID
-    ## 1                               <NA>         48521439
-    ## 2                               <NA>         48524740
-    ## 3                               <NA>         48521441
-    ## 4                               <NA>         48524739
-    ## 5                               <NA>         48521444
-    ## 6                               <NA>         48524743
-    ##   identificationQualifier identificationReferences identificationRemarks
-    ## 1                    <NA>                     <NA>                  <NA>
-    ## 2                    <NA>                     <NA>                  <NA>
-    ## 3                    <NA>                     <NA>                  <NA>
-    ## 4                    <NA>                     <NA>                  <NA>
-    ## 5                    <NA>                     <NA>                  <NA>
-    ## 6                    <NA>                     <NA>                  <NA>
-    ##   identificationVerificationStatus identifiedBy identifier individualCount
-    ## 1                             <NA>         <NA>   21714010              NA
-    ## 2                             <NA>         <NA>   21715997              NA
-    ## 3                             <NA>         <NA>   21714012              NA
-    ## 4                             <NA>         <NA>   21715995              NA
-    ## 5                             <NA>         <NA>   21714014              NA
-    ## 6                             <NA>         <NA>   21715998              NA
-    ##                                                      informationWithheld
-    ## 1 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ## 2 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ## 3 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ## 4 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ## 5 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ## 6 Coordinate uncertainty increased to 28476m to protect threatened taxon
-    ##                        installationKey institutionCode institutionID ISO2
-    ## 1 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ## 2 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ## 3 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ## 4 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ## 5 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ## 6 997448a8-f762-11e1-a439-00145eb45e9a     iNaturalist          <NA>   US
-    ##          key  kingdom kingdomKey language                  lastCrawled
-    ## 1 2242751602 Animalia          1     <NA> 2019-06-03T11:55:24.439+0000
-    ## 2 2234814461 Animalia          1     <NA> 2019-06-03T11:55:24.946+0000
-    ## 3 2235479941 Animalia          1     <NA> 2019-06-03T11:55:24.880+0000
-    ## 4 2234814107 Animalia          1     <NA> 2019-06-03T11:55:25.084+0000
-    ## 5 2235479827 Animalia          1     <NA> 2019-06-03T11:55:24.135+0000
-    ## 6 2234815324 Animalia          1     <NA> 2019-06-03T11:55:24.693+0000
-    ##                lastInterpreted                   lastParsed      lat
-    ## 1 2019-05-20T15:23:17.188+0000 2019-05-20T15:23:17.180+0000 36.85746
-    ## 2 2019-04-17T07:56:19.966+0000 2019-04-17T07:56:19.955+0000 36.82565
-    ## 3 2019-04-17T07:56:20.366+0000 2019-04-17T07:56:20.358+0000 36.84622
-    ## 4 2019-04-10T08:02:35.310+0000 2019-04-10T08:02:35.034+0000 36.90601
-    ## 5 2019-04-10T08:02:34.366+0000 2019-04-10T08:02:34.303+0000 36.85639
-    ## 6 2019-04-10T08:02:34.662+0000 2019-04-10T08:02:34.626+0000 36.91632
-    ##   latestEonOrHighestEonothem latestEpochOrHighestSeries
-    ## 1                       <NA>                       <NA>
-    ## 2                       <NA>                       <NA>
-    ## 3                       <NA>                       <NA>
-    ## 4                       <NA>                       <NA>
-    ## 5                       <NA>                       <NA>
-    ## 6                       <NA>                       <NA>
-    ##   latestEraOrHighestErathem latestPeriodOrHighestSystem
-    ## 1                      <NA>                        <NA>
-    ## 2                      <NA>                        <NA>
-    ## 3                      <NA>                        <NA>
-    ## 4                      <NA>                        <NA>
-    ## 5                      <NA>                        <NA>
-    ## 6                      <NA>                        <NA>
-    ##                                                   license lifeStage
-    ## 1 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ## 2 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ## 3 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ## 4 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ## 5 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ## 6 http://creativecommons.org/licenses/by-nc/4.0/legalcode      <NA>
-    ##   lithostratigraphicTerms locality locationAccordingTo locationID
-    ## 1                    <NA>     <NA>                <NA>       <NA>
-    ## 2                    <NA>     <NA>                <NA>       <NA>
-    ## 3                    <NA>     <NA>                <NA>       <NA>
-    ## 4                    <NA>     <NA>                <NA>       <NA>
-    ## 5                    <NA>     <NA>                <NA>       <NA>
-    ## 6                    <NA>     <NA>                <NA>       <NA>
-    ##   locationRemarks       lon lowestBiostratigraphicZone
-    ## 1            <NA> -111.7981                       <NA>
-    ## 2            <NA> -111.7283                       <NA>
-    ## 3            <NA> -111.7180                       <NA>
-    ## 4            <NA> -111.6178                       <NA>
-    ## 5            <NA> -111.7577                       <NA>
-    ## 6            <NA> -111.6544                       <NA>
-    ##                       modified month municipality nameAccordingTo
-    ## 1 2019-05-16T15:27:40.000+0000     1         <NA>            <NA>
-    ## 2 2019-04-06T04:13:42.000+0000     1         <NA>            <NA>
-    ## 3 2019-04-06T04:13:53.000+0000     1         <NA>            <NA>
-    ## 4 2019-04-01T20:39:03.000+0000     1         <NA>            <NA>
-    ## 5 2019-04-01T20:43:17.000+0000     1         <NA>            <NA>
-    ## 6 2019-04-01T20:32:47.000+0000     1         <NA>            <NA>
-    ##   namePublishedInYear nomenclaturalCode
-    ## 1                <NA>              <NA>
-    ## 2                <NA>              <NA>
-    ## 3                <NA>              <NA>
-    ## 4                <NA>              <NA>
-    ## 5                <NA>              <NA>
-    ## 6                <NA>              <NA>
-    ##                                        occurrenceID occurrenceRemarks
-    ## 1 https://www.inaturalist.org/observations/21714010              <NA>
-    ## 2 https://www.inaturalist.org/observations/21715997              <NA>
-    ## 3 https://www.inaturalist.org/observations/21714012              <NA>
-    ## 4 https://www.inaturalist.org/observations/21715995              <NA>
-    ## 5 https://www.inaturalist.org/observations/21714014              <NA>
-    ## 6 https://www.inaturalist.org/observations/21715998              <NA>
-    ##   occurrenceStatus           order orderKey organismID organismQuantity
-    ## 1             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ## 2             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ## 3             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ## 4             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ## 5             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ## 6             <NA> Accipitriformes  7191147       <NA>             <NA>
-    ##   organismQuantityType organismRemarks otherCatalogNumbers
-    ## 1                 <NA>            <NA>                <NA>
-    ## 2                 <NA>            <NA>                <NA>
-    ## 3                 <NA>            <NA>                <NA>
-    ## 4                 <NA>            <NA>                <NA>
-    ## 5                 <NA>            <NA>                <NA>
-    ## 6                 <NA>            <NA>                <NA>
-    ##   ownerInstitutionCode parentNameUsage   phylum phylumKey preparations
-    ## 1                 <NA>            <NA> Chordata        44         <NA>
-    ## 2                 <NA>            <NA> Chordata        44         <NA>
-    ## 3                 <NA>            <NA> Chordata        44         <NA>
-    ## 4                 <NA>            <NA> Chordata        44         <NA>
-    ## 5                 <NA>            <NA> Chordata        44         <NA>
-    ## 6                 <NA>            <NA> Chordata        44         <NA>
-    ##   previousIdentifications    protocol publishingCountry
-    ## 1                    <NA> DWC_ARCHIVE                US
-    ## 2                    <NA> DWC_ARCHIVE                US
-    ## 3                    <NA> DWC_ARCHIVE                US
-    ## 4                    <NA> DWC_ARCHIVE                US
-    ## 5                    <NA> DWC_ARCHIVE                US
-    ## 6                    <NA> DWC_ARCHIVE                US
-    ##                       publishingOrgKey     recordedBy recordNumber
-    ## 1 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ## 2 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ## 3 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ## 4 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ## 5 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ## 6 28eb1a3f-1c15-4a95-931a-4af90ecb574d Robert Coonrod         <NA>
-    ##                                          references reproductiveCondition
-    ## 1 https://www.inaturalist.org/observations/21714010                  <NA>
-    ## 2 https://www.inaturalist.org/observations/21715997                  <NA>
-    ## 3 https://www.inaturalist.org/observations/21714012                  <NA>
-    ## 4 https://www.inaturalist.org/observations/21715995                  <NA>
-    ## 5 https://www.inaturalist.org/observations/21714014                  <NA>
-    ## 6 https://www.inaturalist.org/observations/21715998                  <NA>
-    ##                                  rights   rightsHolder samplingProtocol
-    ## 1 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ## 2 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ## 3 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ## 4 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ## 5 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ## 6 © Robert Coonrod some rights reserved Robert Coonrod             <NA>
-    ##                         scientificName scientificNameID  sex
-    ## 1 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ## 2 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ## 3 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ## 4 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ## 5 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ## 6 Gymnogyps californianus (Shaw, 1797)             <NA> <NA>
-    ##                   species speciesKey specificEpithet startDayOfYear
-    ## 1 Gymnogyps californianus    2481920   californianus           <NA>
-    ## 2 Gymnogyps californianus    2481920   californianus           <NA>
-    ## 3 Gymnogyps californianus    2481920   californianus           <NA>
-    ## 4 Gymnogyps californianus    2481920   californianus           <NA>
-    ## 5 Gymnogyps californianus    2481920   californianus           <NA>
-    ## 6 Gymnogyps californianus    2481920   californianus           <NA>
-    ##   taxonConceptID taxonID taxonKey taxonomicStatus taxonRank taxonRemarks
-    ## 1           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ## 2           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ## 3           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ## 4           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ## 5           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ## 6           <NA>    4778  2481920        ACCEPTED   SPECIES         <NA>
-    ##   type typeStatus verbatimCoordinateSystem verbatimElevation
-    ## 1 <NA>       <NA>                     <NA>              <NA>
-    ## 2 <NA>       <NA>                     <NA>              <NA>
-    ## 3 <NA>       <NA>                     <NA>              <NA>
-    ## 4 <NA>       <NA>                     <NA>              <NA>
-    ## 5 <NA>       <NA>                     <NA>              <NA>
-    ## 6 <NA>       <NA>                     <NA>              <NA>
-    ##         verbatimEventDate verbatimLocality verbatimTaxonRank
-    ## 1  2019/01/09 9:58 AM MST    United States              <NA>
-    ## 2  2019/01/09 9:48 AM MST    United States              <NA>
-    ## 3 2019/01/09 10:24 AM MST    United States              <NA>
-    ## 4  2019/01/08 4:57 PM MST    United States              <NA>
-    ## 5 2019/01/09 10:26 AM MST    United States              <NA>
-    ## 6 2019/01/09 10:54 AM MST    United States              <NA>
-    ##   vernacularName year downloadDate
-    ## 1           <NA> 2019   2019-06-05
-    ## 2           <NA> 2019   2019-06-05
-    ## 3           <NA> 2019   2019-06-05
-    ## 4           <NA> 2019   2019-06-05
-    ## 5           <NA> 2019   2019-06-05
-    ## 6           <NA> 2019   2019-06-05
+``` r
+if(!file.exists("spatialdata/condor_raw.rdata")){
+  occ_raw <- gbif(genus="Gymnogyps",species="californianus",download=TRUE) 
+  save(occ_raw,file = "spatialdata/condor_raw.rdata")
+}else{
+  load("spatialdata/condor_raw.rdata")
+}
+
+head(occ_raw)      # View the first condor occurence records from the dataset
+```
 
 Let's take a look at the attributes of the data set table:
 
@@ -1090,9 +767,10 @@ names(occ_raw) [1:20 ]
 The meaning of those columns/terms are defined by Darwin Core. Refer to [Darwin Core quick reference guide](https://dwc.tdwg.org/terms/) for more information.
 
 A few columns to highlight:
-\* `basisOfRecord`
-\* The specific nature of the data record.
-\* PreservedSpecimen, FossilSpecimen, LivingSpecimen, MaterialSample, Event, HumanObservation, MachineObservation, Taxon, Occurrence
+
+-   `basisOfRecord`
+-   The specific nature of the data record.
+-   PreservedSpecimen, FossilSpecimen, LivingSpecimen, MaterialSample, Event, HumanObservation, MachineObservation, Taxon, Occurrence
 
 -   `year`
 -   The four-digit year in which the Event occurred, according to the Common Era Calendar.
@@ -1115,7 +793,7 @@ cat(nrow(occ_raw)-nrow(occ_clean), "records are removed")
 
     ## 355 records are removed
 
-The function `subset()` help us select the rows that fulfills some condition. Now we want to remove records with duplicated location data:
+The function `subset()` help us select the rows that fulfill some condition. Now we want to remove records with duplicated location data:
 
 ``` r
 dups <- duplicated( occ_clean[c("lat","lon")]  )
@@ -1125,7 +803,7 @@ cat(nrow(occ_clean)-nrow(occ_unique), "records are removed")
 
     ## 7731 records are removed
 
-The function `duplicated()` help us subset the rows that have duplicated values for the selected columns. Now let's took a look at the column "basisOfRecord". We can use the function `table()` to summarize the type of records:
+The function `duplicated()` helps us subset the rows that have duplicated values for the selected columns. Now let's take a look at the column "basisOfRecord". We can use the function `table()` to summarize the type of records:
 
 ``` r
 table(occ_unique$basisOfRecord)
@@ -1226,15 +904,6 @@ Finally we can save our spatial data as a shapefile:
 ``` r
 if(!file.exists("temp")) dir.create("temp")
 shapefile(occ_spatial,"temp/occ_spatial.shp",overwrite=TRUE)
-```
-
-    ## Warning in rgdal::writeOGR(x, filename, layer, driver = "ESRI Shapefile", :
-    ## Field names abbreviated for ESRI Shapefile driver
-
-    ## Warning in rgdal::writeOGR(x, filename, layer, driver = "ESRI Shapefile", :
-    ## field names h://_/D, h://_/B changed by driver to: h_//_/D, h_//_/B
-
-``` r
 loaded_shapefile <- shapefile("temp/occ_spatial.shp")
 ```
 
@@ -1244,13 +913,13 @@ Now we can open the shapefile with other GIS software, such as QGIS or ArcGis.
 
 > ### Excercise
 >
-> Select your favourite species (select one with no more than 200000 records!) and: 1) keep specimen records only 2) subset to records from 1990 to 2000 3) clean the dataset 4) make the dataset spatial, assign a CRS, plot, and save the dataset.
+> Select your favourite species (select one with no more than 200000 records!) and: 1) keep specimen records only; 2) subset to records from 1990 to 2000; 3) clean the dataset; 4) make the dataset spatial, assign a CRS, plot, and save the dataset.
 
 <br>
 
 ### 3.3.2 Combining vector and raster data
 
-Let's combine our occurrence data of california condor with the bioclim data for mean temperature:
+Let's combine our occurrence data of california condor with the bioclim data:
 
 ``` r
 if( !file.exists( paste0("spatialdata/bioclim/bio_10m_bil.zip")   )){
@@ -1369,7 +1038,7 @@ head(bg)
     ## 5   45  6048  370   55  315  282  153
     ## 6   53  4050  389  122  267  310  214
 
-And extract the environmental conditions for the background sample:
+And can also use the `extract()` function to get the environmental conditions for the background sample:
 
 ``` r
 conditions_bg<- extract(clim,bg)
@@ -1416,7 +1085,7 @@ bg_train <- conditions_bg[group != 1, ]
 bg_test <- conditions_bg[group == 1, ]
 ```
 
-We can now fit a generalized linear model (GLM) using the training data.
+We can now fit a logistic regression model (using the `glm()` function) using the training data.
 
 ``` r
 train <- data.frame(rbind(occ_train, bg_train))
@@ -1425,11 +1094,6 @@ train$pa <- c(rep(1, nrow(occ_train)), rep(0, nrow(bg_train)))  # We create pres
 
 condorglm <- glm(pa ~ bio1 + bio5 + bio6 + bio7 + bio8 + bio12 + bio16 + bio17,   # We can choose the predictive variables
             family = binomial(link = "logit"), data=train)    # GLM family argument (logit/identity/log)
-```
-
-    ## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-
-``` r
 summary(condorglm)
 ```
 
