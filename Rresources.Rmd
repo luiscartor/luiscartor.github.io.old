@@ -1,0 +1,10 @@
+---
+title: "R Resources"
+author: "luiscartor"
+date: "June 3, 2019"
+output: github_document
+---
+
+R tutorials:
+
+
