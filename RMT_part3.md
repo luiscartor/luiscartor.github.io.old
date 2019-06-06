@@ -1,7 +1,7 @@
 R Mini Tutorial: R for spatial modelling
 ================
 luiscartor
-May 29, 2019
+June 3, 2019
 
 #### Go to [part 1](https://luiscartor.github.io/RMT_part1) of the tutorial.
 
@@ -71,7 +71,7 @@ first_raster
     ## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
     ## source     : memory
     ## names      : layer 
-    ## values     : 0.03829368, 0.9905562  (min, max)
+    ## values     : 0.0001895148, 0.9980985  (min, max)
 
 ### 3.1.3 Download, read, and write raster files
 
@@ -438,16 +438,16 @@ df
 ```
 
     ##    ID    precip
-    ## 1   1 24.560280
-    ## 2   2 37.362397
-    ## 3   3 65.337683
-    ## 4   4 64.871412
-    ## 5   5  6.037816
-    ## 6   6 39.604437
-    ## 7   7 97.482510
-    ## 8   8 51.678298
-    ## 9   9 88.128526
-    ## 10 10 37.860181
+    ## 1   1 72.068660
+    ## 2   2  8.737482
+    ## 3   3 22.752216
+    ## 4   4 56.740672
+    ## 5   5 72.897111
+    ## 6   6 52.099820
+    ## 7   7 57.444315
+    ## 8   8 24.494930
+    ## 9   9 74.450572
+    ## 10 10 89.294353
 
 And now we add the precipitation values to the spatial points we created before:
 
@@ -462,8 +462,8 @@ ptsdf
     ## crs         : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
     ## variables   : 2
     ## names       : ID,           precip 
-    ## min values  :  1, 6.03781626559794 
-    ## max values  : 10, 97.4825097247958
+    ## min values  :  1, 8.73748199082911 
+    ## max values  : 10, 89.2943528247997
 
 See what is inside this `SpatialPointsDataFrame`:
 
@@ -474,16 +474,16 @@ showDefault(ptsdf)
     ## An object of class "SpatialPointsDataFrame"
     ## Slot "data":
     ##    ID    precip
-    ## 1   1 24.560280
-    ## 2   2 37.362397
-    ## 3   3 65.337683
-    ## 4   4 64.871412
-    ## 5   5  6.037816
-    ## 6   6 39.604437
-    ## 7   7 97.482510
-    ## 8   8 51.678298
-    ## 9   9 88.128526
-    ## 10 10 37.860181
+    ## 1   1 72.068660
+    ## 2   2  8.737482
+    ## 3   3 22.752216
+    ## 4   4 56.740672
+    ## 5   5 72.897111
+    ## 6   6 52.099820
+    ## 7   7 57.444315
+    ## 8   8 24.494930
+    ## 9   9 74.450572
+    ## 10 10 89.294353
     ## 
     ## Slot "coords.nrs":
     ## numeric(0)
@@ -690,9 +690,9 @@ d
 ```
 
     ##   attr1 attr2 newatt
-    ## 1     1     7      x
-    ## 2     2     6      d
-    ## 3     3     5      c
+    ## 1     1     7      l
+    ## 2     2     6      i
+    ## 3     3     5      q
 
 Let's plot only one of the polygons:
 

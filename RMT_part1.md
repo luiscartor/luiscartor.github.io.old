@@ -1,7 +1,7 @@
 R Mini Tutorial Part 1: Getting started and data types
 ================
 luiscartor
-May 29, 2019
+June 3, 2019
 
 #### Go to [part 2](https://luiscartor.github.io/RMT_part2) of the tutorial.
 

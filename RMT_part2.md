@@ -1,7 +1,7 @@
 R Mini Tutorial Part 2: R Environment, reading/writting, and basic executions
 ================
 luiscartor
-May 29, 2019
+June 3, 2019
 
 #### Go to [part 1](https://luiscartor.github.io/RMT_part1) of the tutorial.
 
@@ -468,7 +468,7 @@ summary(normvec)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## -2.3871 -0.4519  0.1165  0.1220  0.7746  2.8589
+    ## -2.8367 -0.8642 -0.2413 -0.1603  0.4542  2.3482
 
 ### 2.4.2 Linear regression
 
