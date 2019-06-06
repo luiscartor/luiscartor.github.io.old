@@ -1,4 +1,4 @@
-R Mini Tutorial: R for spatial modelling
+R Mini Tutorial Part 3: R for spatial modelling
 ================
 luiscartor
 June 3, 2019
