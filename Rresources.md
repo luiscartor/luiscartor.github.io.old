@@ -3,6 +3,8 @@ R Resources
 luiscartor
 June 3, 2019
 
+<br>
+<br>
 
 R Home Page: [http://www.r-project.org](http://www.r-project.org)
 
