@@ -1,4 +1,4 @@
-## R Mini Tutorial for NIMBioS' SRE 2019
+## R Mini Tutorial
 
 [Part 1: Getting started and data types](https://luiscartor.github.io/RMT_part1).
 
